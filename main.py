@@ -24,9 +24,13 @@ while game_is_on:
     #Make cars move in the screen
     carmanager.move_car()
     #Reset turtle when road is crossed
-    player.crossed()
+    if player.crossed():
+        player.crossed()
+        carmanager.accelerate()
     for car in carmanager.TURTLE_LIST:
         if car.distance(player) < 20:
+            player.gameover()
             game_is_on = False
+
 
 screen.exitonclick()

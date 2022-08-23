@@ -4,7 +4,8 @@ from scoreboard import Scoreboard
 STARTING_POSITION = (0, -280)
 MOVE_DISTANCE = 10
 FINISH_LINE_Y = 280
-style = ('Courier', 40, 'bold')
+FONT = ("Courier", 24, "normal")
+
 
 class Player(Turtle):
     def __init__(self):
@@ -25,14 +26,19 @@ class Player(Turtle):
     def move(self):
         self.forward(MOVE_DISTANCE)
 
+    def reset_turtle(self):
+        self.clear()
+        self.create_turtle()
+        self.score.new_score()
+
     def crossed(self):
         if self.ycor() == FINISH_LINE_Y:
-            self.clear()
-            self.create_turtle()
-            self.score.new_score()
+            self.reset_turtle()
+            return True
 
-    def detect_collision(self):
-        self.ycor()
+    def gameover(self):
+        self.goto(0, 0)
+        self.write("Game Over", font=FONT, align='center')
 
 
 

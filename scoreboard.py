@@ -18,4 +18,3 @@ class Scoreboard(Turtle):
         self.write("Level: " + str(self.new_level_no), font=FONT, align='center')
 
 
-
