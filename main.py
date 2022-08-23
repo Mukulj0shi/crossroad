@@ -5,17 +5,28 @@ from car_manager import CarManager
 from scoreboard import Scoreboard
 
 screen = Screen()
+carmanager = CarManager()
+player = Player()
+
 screen.setup(width=600, height=600)
 screen.tracer(0)
-carmanager = CarManager()
+screen.listen()
+screen.onkey(player.move, "Up")
+player.create_turtle()
+
 #Create first car
 
 game_is_on = True
 while game_is_on:
-    time.sleep(1)
+    time.sleep(0.1)
     screen.update()
+    carmanager.create_cars()
     #Make cars move in the screen
     carmanager.move_car()
-
+    #Reset turtle when road is crossed
+    player.crossed()
+    for car in carmanager.TURTLE_LIST:
+        if car.distance(player) < 20:
+            game_is_on = False
 
 screen.exitonclick()
