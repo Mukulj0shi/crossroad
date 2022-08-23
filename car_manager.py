@@ -2,15 +2,11 @@ from turtle import Turtle, Screen
 import random
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
-STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
-
-
 
 class CarManager:
     def __init__(self):
         self.x = 265
-        self.move_x = -20
+        self.move_x = -5
         self.length_list = 0
         self.new_y = 0
         self.TURTLE_LIST = []
@@ -31,5 +27,9 @@ class CarManager:
     def move_car(self):
         for car in range(self.length_list):
             self.TURTLE_LIST[car].forward(self.move_x)
+
+    def accelerate(self):
+        self.move_x = self.move_x - 5
+
 
 
